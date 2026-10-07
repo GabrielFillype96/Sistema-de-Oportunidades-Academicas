@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';  
+import 'student/feed_screen.dart';
+import 'student/student_navigation.dart';
 
-// StatelessWidget means that the widget itself doesn't have internal changing state.
-// StatefulWidget means that the widget can have some changeable information while the application is running.
-// This is the widget itself.
+// StatelessWidget means that the widget itself doesn't have internal changing state
+// StatefulWidget means that the widget can have some changeable information while the application is running
+// This is the widget itself
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  // Creates and returns the State related with LoginScreenState.
-  // Dart's arrow syntax is a shorter way of writing with "return".
+  // Creates and returns the State related with LoginScreenState
+  // Dart's arrow syntax is a shorter way of writing with "return"
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-// This is the State which contains the changing information.
+// This is the State which contains the changing information
 class _LoginScreenState extends State<LoginScreen> {
-  // Gives the form a unique identification card.
-  // FormState is a State object with some properties, such as validation.
+  // Gives the form a unique identification card
+  // FormState is a State object with some properties, such as validation
   final _formKey = GlobalKey<FormState>();
 
-  // Text controllers that allow us to access what the user has typed.
+  // Text controllers that allow us to access what the user has typed
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  // Variable that represents the current visible state of the password.
+  // Variable that represents the current visible state of the password
   bool _obscurePassword = true;
 
-  // As controllers hold resources, we have to clean them up when the application is destroyed.
+  // As controllers hold resources, we have to clean them up when the application is destroyed
   @override
   void dispose() {
     _emailController.dispose();
@@ -37,19 +38,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold is a widget that provides a structural skeleton to configure UI elements.
+    // Scaffold is a widget that provides a structural skeleton to configure UI elements
     return Scaffold(
-      // SafeArea adds necessary padding to prevent content from being blocked.
+      // SafeArea adds necessary padding to prevent content from being blocked
       body: SafeArea(
         // LayoutBuilder builds a widget tree based on the size constraints
         // passed down by its parent widget.
         child: LayoutBuilder(
           builder: (context, constraints) {
             // If the content doesn't fit, SingleChildScrollView
-            // allows you to scroll up and reach the fields.
+            // allows you to scroll up and reach the fields
             return SingleChildScrollView(
               child: ConstrainedBox(
-                // Makes the content be at least as tall as the available screen.
+                // Makes the content be at least as tall as the available screen
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight,
                 ),
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             SizedBox(height: 32),
 
-                            // Form groups the fields that belong to the same form.
+                            // Form groups the fields that belong to the same form
                             Form(
                               key: _formKey,
                               child: Column(
@@ -110,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                     // Login validation.
                                     validator: (value) {
-                                      // Validation of empty or null insertion.
+                                      // Validation of empty or null insertion
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your e-mail';
                                       }
@@ -138,14 +139,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     // Text controller.
                                     controller: _passwordController,
 
-                                    // Password validation.
+                                    // Password validation
                                     validator: (value) {
-                                      // Validation of empty or null insertion.
+                                      // Validation of empty or null insertion
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your password';
                                       }
 
-                                      // Validation of the number of characters.
+                                      // Validation of the number of characters
                                       if (value.length < 8) {
                                         return 'Password must be at least 8 characters';
                                       }
@@ -153,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       return null;
                                     },
 
-                                    // Mostly the front-end configuration.
+                                    // Mostly the front-end configuration
                                     decoration: InputDecoration(
                                       labelText: 'Password',
                                       hintText: 'Enter your password',
@@ -176,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                         onPressed: () {
                                           // When pressing the icon,
-                                          // set the state to the opposite bool value.
+                                          // set the state to the opposite bool value
                                           setState(() {
                                             _obscurePassword =
                                                 !_obscurePassword;
@@ -192,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     width: double.infinity,
                                     child: ElevatedButton(
                                       // Validate what is inserted in the fields
-                                      // when the button is pressed.
+                                      // when the button is pressed
                                       onPressed: () {
                                         final isValid = _formKey.currentState!.validate();
 
@@ -203,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => const HomeScreen(),
+                                              builder: (context) => const StudentNavigation(),
                                             ),
                                           );
                                           debugPrint(

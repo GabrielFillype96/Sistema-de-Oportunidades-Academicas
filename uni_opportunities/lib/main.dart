@@ -11,7 +11,7 @@ class UniOpportunitiesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UniOpportunities',
+      title: 'UnDFOpportunities',
       debugShowCheckedModeBanner: false,
       home: const LoginScreen(),
     );
